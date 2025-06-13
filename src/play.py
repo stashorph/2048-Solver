@@ -178,7 +178,7 @@ if __name__ == "__main__":
     parser.add_argument(
         '--weights', 
         type=str, 
-        default='2048 Puzzle/weights/final.pkl',
+        default='weights/ntuple_weights_20000.pkl',
         help='Path to the weights file for the AI solver'
     )
     args = parser.parse_args()

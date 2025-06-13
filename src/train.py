@@ -6,7 +6,7 @@ import os
 import glob
 
 from game2048 import Game2048
-from ntuple_network import Ntuplenetwork
+from ntuple_network import NTupleNetwork
 
 class TDLearner:
     """
@@ -124,7 +124,7 @@ class TDLearner:
 def find_latest_checkpoint(weights_dir):
     """Finds the most recent weight checkpoint file."""
     
-    checkpoints = glob.glob(f"{weights_dir}/ntuple_weights_*.pkl")
+    checkpoints = glob.glob(f"{weights_dir}/*.pkl")
     if not checkpoints:
         return None, 0
 
@@ -146,21 +146,21 @@ def find_latest_checkpoint(weights_dir):
 
 def run_training(args):
     """Sets up and runs the training session based on command-line arguments."""
-    network = Ntuplenetwork()
+    network = NTupleNetwork()
     
-    if args.resume:
-        latest_checkpoint, resume_episode = find_latest_checkpoint(args.weights_dir)
-        if latest_checkpoint:
-            print(f"Resuming training from checkpoint: {latest_checkpoint}")
-            with open(latest_checkpoint, 'rb') as f:
-                network.weights = pickle.load(f)
-            start_episode = resume_episode
-        else:
-            print("No checkpoints found. Starting new training session.")
-            start_episode = 0
+
+    latest_checkpoint, resume_episode = find_latest_checkpoint(args.weights_dir)
+    if latest_checkpoint:
+        print(f"Resuming training from checkpoint: {latest_checkpoint}")
+        with open(latest_checkpoint, 'rb') as f:
+            network.weights = pickle.load(f)
+        start_episode = resume_episode
     else:
-        print("Starting new training session.")
+        print("No checkpoints found. Starting new training session.")
         start_episode = 0
+
+    print("Starting new training session.")
+    start_episode = 0
 
     remaining_episodes = args.episodes - start_episode
     if remaining_episodes <= 0:
@@ -180,7 +180,7 @@ if __name__ == "__main__":
     parser.add_argument('--save-interval', type=int, default=5000, help='Save weights every N episodes.')
     parser.add_argument('--alpha', type=float, default=0.01, help='Learning rate for the TD learner.')
     parser.add_argument('--weights-dir', type=str, default='weights', help='Directory to save/load weight files.')
-    parser.add_argument('--resume', action='store_true', help='Resume training from the latest checkpoint.')
+    
     
     args = parser.parse_args()
     run_training(args)
