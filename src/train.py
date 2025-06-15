@@ -176,7 +176,7 @@ def run_training(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Train an N-tuple network for 2048.")
-    parser.add_argument('--episodes', type=int, default=100000, help='Total number of episodes to train for.')
+    parser.add_argument('--episodes', type=int, default=80000, help='Total number of episodes to train for.')
     parser.add_argument('--save-interval', type=int, default=5000, help='Save weights every N episodes.')
     parser.add_argument('--alpha', type=float, default=0.01, help='Learning rate for the TD learner.')
     parser.add_argument('--weights-dir', type=str, default='weights', help='Directory to save/load weight files.')

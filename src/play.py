@@ -74,7 +74,7 @@ class GameGUI:
         
         # Tile background
         color = self.TILE_COLORS.get(value, self.TILE_COLORS[2048])
-        pygame.draw.rect(self.screen, color, (x, y, self.TILE_SIZE, self.TILE_SIZE), border_radius=5)
+        pygame.draw.rect(self.screen, color, (x, y, self.TILE_SIZE, self.TILE_SIZE), border_radius=10)
 
         # Tile text
         if value > 0:
@@ -178,7 +178,7 @@ if __name__ == "__main__":
     parser.add_argument(
         '--weights', 
         type=str, 
-        default='weights/ntuple_weights_20000.pkl',
+        default='weights/ntuple_weights_final.pkl',
         help='Path to the weights file for the AI solver'
     )
     args = parser.parse_args()

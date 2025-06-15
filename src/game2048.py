@@ -18,7 +18,7 @@ class Game2048:
     def add_random_tile(self):
         """
         Adds a new tile (either 2 or 4) to a random empty cell on the board.
-        A '2' is added 90% of the time, and a '4' is added 10% of the time.
+        '2' is added 90% of the time, and '4' is added 10% of the time.
         """
         empty_cells = []
         for i in range(self.board_size):
@@ -33,13 +33,6 @@ class Game2048:
     def merge_row_left(self, row):
         """
         Merges a single row to the left.
-        
-        Args:
-            row (list): The row to merge.
-            
-        Returns:
-            tuple: A tuple containing the new merged row (list) and the score
-                   increase from merges (int).
         """
         new_row = [i for i in row if i != 0]
         score_increase = 0
@@ -67,12 +60,6 @@ class Game2048:
     def make_move(self, direction):
         """
         Makes a move in the specified direction ('up', 'down', 'left', 'right').
-
-        Args:
-            direction (str): The direction of the move.
-
-        Returns:
-            bool: True if the board changed after the move, False otherwise.
         """
         if self.game_over:
             return False
