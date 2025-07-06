@@ -72,11 +72,11 @@ class Trainer:
                 print(f"  New best tile! {best_tile_ever} (episode {episode})")
 
             if episode % save_interval == 0:
-                self.save_weights(f"{'weights'}/ntuple_weights_{episode}.pkl")
+                self.save_weights(f"weights/ntuple_weights_{episode}.pkl")
                 print(f"Episode {episode}/{total_episodes} | Score: {self.game.score} | Highest Tile: {current_max_tile}")
         
-        self.save_weights(f"{'weights'}/ntuple_weights_final.pkl")
-        print(f"\nTraining complete. Best tile achieved: {best_tile_ever}")
+        self.save_weights("weights/ntuple_weights_final.pkl")
+        print(f"Training complete. Best tile achieved: {best_tile_ever}")
 
     def save_weights(self, filename): # Saves the network weights to a file.
         os.makedirs(os.path.dirname(filename), exist_ok=True)
