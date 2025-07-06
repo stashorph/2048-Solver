@@ -62,6 +62,11 @@ The project is organized in the `src/` directory
 └── README.md
 ```
 
+## References
+
+- The N-Tuple network approach is inspired by **Stanley Zhong's ([qpwoeirut](https://github.com/qpwoeirut))** [2048-solver](https://github.com/qpwoeirut/2048-solver).
+- Also referred **SizzleHsu's ([sizzle0121](https://github.com/sizzle0121))** [2048-Game-and-AI](https://github.com/sizzle0121/2048-Game-and-AI).
+
 ## License
 
 This project is licensed under the MIT License.
