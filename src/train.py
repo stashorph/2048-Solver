@@ -14,7 +14,7 @@ class Trainer:
         self.gamma =0.95          
 
     def get_reward(self, prev_board, current_board):
-        # Reward is not based on game score but on board improvements
+        # Reward is not based on game score but on board improvement
         
         # Big bonus for creating a new highest tile
         prev_max = max(max(row) for row in prev_board)
@@ -69,7 +69,7 @@ class Trainer:
             current_max_tile = max(max(row) for row in self.game.board)
             if current_max_tile > best_tile_ever:
                 best_tile_ever = current_max_tile
-                print(f"  New best tile! {best_tile_ever} (episode {episode})")
+                print(f"New best tile! {best_tile_ever} (episode {episode})")
 
             if episode % save_interval == 0:
                 self.save_weights(f"weights/ntuple_weights_{episode}.pkl")
@@ -78,29 +78,25 @@ class Trainer:
         self.save_weights("weights/ntuple_weights_final.pkl")
         print(f"Training complete. Best tile achieved: {best_tile_ever}")
 
-    def save_weights(self, filename): # Saves the network weights to a file.
+    def save_weights(self, filename):
         os.makedirs(os.path.dirname(filename), exist_ok=True)
         with open(filename, 'wb') as f:
             pickle.dump(self.network.weights, f)
         print(f"Weights saved to {filename}")
 
 
-if __name__ == "__main__":
+total_ep = 150000
+save_interval = 20000
+weights_file = 'weights/ntuple_weights_final.pkl'
+network = N_Tuple()
 
-    total_ep = 80000
-    save_interval = 5000
-    weights_file = 'weights/ntuple_weights_final.pkl'
-    network = N_Tuple()
+with open(weights_file, 'rb') as f:
+    network.weights = pickle.load(f)
 
-    try:
-        with open(weights_file, 'rb') as f:
-            network.weights = pickle.load(f)
-        print(f"Loaded existing weights from {weights_file} to continue training.")
-    except FileNotFoundError:
-        print("No weights found. Starting new training session.")
+print(f"Loaded existing weights from {weights_file} to continue training.")
 
-    trainer = Trainer(network)
-    trainer.run_training(
-        total_episodes=total_ep,
-        save_interval=save_interval
-    )
+trainer = Trainer(network)
+trainer.run_training(
+    total_episodes=total_ep,
+    save_interval=save_interval
+)

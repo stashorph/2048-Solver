@@ -124,7 +124,5 @@ class GameGUI:
         pygame.quit()
 
 
-if __name__ == "__main__":
-
-    gui = GameGUI(weights_path='weights/ntuple_weights_final.pkl')
-    gui.run()
+gui = GameGUI(weights_path='weights/ntuple_weights_final.pkl')
+gui.run()
